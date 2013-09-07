@@ -36990,3 +36990,7 @@ THREE.ShaderSprite = {
 
 };
 
+// Exporting THREE
+if (typeof exports == "object") {
+  module.exports = THREE;
+}

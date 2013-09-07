@@ -22,6 +22,7 @@ def main(argv=None):
 	parser.add_argument('--minify', action='store_true', default=False)
 	parser.add_argument('--output', default='../../build/three.js')
 	parser.add_argument('--sourcemaps', action='store_true', default=False)
+	parser.add_argument('--commonjs', action='store_true', default=False)
 
 	args = parser.parse_args()
 
@@ -53,6 +54,12 @@ def main(argv=None):
 			with open(filename, 'r') as f:
 				tmp.write(f.read())
 				tmp.write('\n')
+
+	if args.commonjs is True:
+		tmp.write('// Exporting THREE\n');
+        tmp.write('if (typeof exports == "object") {\n');
+        tmp.write('  module.exports = THREE;\n');
+        tmp.write('}');
 
 	tmp.close()
 
